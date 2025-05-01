@@ -2,7 +2,9 @@ name: Daily Check-in
 
 on:
   schedule:
+    #- cron: '0 1 * * *'  # 每天1点 UTC 时间执行
     - cron: '0 */12 * * *'  # 每12小时执行一次
+
   workflow_dispatch:
 
 jobs:
@@ -26,6 +28,12 @@ jobs:
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          LINUXDO_USERNAME: ${{ secrets.LINUXDO_USERNAME }}
+          LINUXDO_PASSWORD: ${{ secrets.LINUXDO_PASSWORD }}
+          GOTIFY_URL: ${{ secrets.GOTIFY_URL }}
+          GOTIFY_TOKEN: ${{ secrets.GOTIFY_TOKEN }}
+          SC3_PUSH_KEY: ${{ secrets.SC3_PUSH_KEY }}
+          BROWSE_ENABLED: ${{ secrets.BROWSE_ENABLED }}
         run: |
           python main.py
 
